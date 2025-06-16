@@ -5,6 +5,7 @@
 'require tools.prng as random';
 
 function subst(str, val) {
+	str = str.replace(/\\/g, '\\\\'); // Escape backslashes
 	return str.replace(/%(H|pn|pi|dt|di|ds)/g, function(m, p1) {
 		switch (p1) {
 		case 'H':  return val.host   || '';

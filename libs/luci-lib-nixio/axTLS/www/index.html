@@ -4256,7 +4256,12 @@ function displayMessage(text,linkText)
 	if(linkText)
 		{
 		var link = createTiddlyElement(e,"a",null,null,text);
-		link.href = linkText;
+		var allowedUrls = ["file://safe/path1", "file://safe/path2"]; // Example whitelist
+		if (allowedUrls.includes(linkText)) {
+			link.href = linkText;
+		} else {
+			link.href = "file://safe/default"; // Safe default value
+		}
 		link.target = "_blank";
 		}
 	else
